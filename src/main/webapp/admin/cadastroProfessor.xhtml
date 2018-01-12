@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+            <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Cadastrar Professor">
+                <h:form id="Usuario"> 
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" style="font-size: 15px;">
+                        <h:panelGrid columns="2"  style="margin: auto;">
+                            <h:outputText value="Nome: *" />
+                            <p:inputText value="#{professorBean.entidade.nome}" required="true" label="Nome"/>
+                            <h:outputText value="Telefone: *" />
+                            <p:inputMask id="telefone"   
+                                         value="#{professorBean.entidade.telefone}"                                       
+                                         mask="(99)99999-9999" 
+                                         label="Telefone"
+                                         required="true">
+                            </p:inputMask>
+                            <h:outputText value="Login: *" />
+                            <p:inputText value="#{professorBean.entidade.login}" required="true" label="Login"/>
+                            <h:outputText value="Data de Nascimento: *" />
+                            <p:inputMask id="dataNascimento"   
+                                         value="#{professorBean.entidade.dataNascimento}"                                       
+                                         mask="99/99/9999" 
+                                         label="Data de Nascimento"
+                                         required="true">  
+                                <f:convertDateTime pattern="dd/MM/yyyy" />  
+                            </p:inputMask>
+                            <h:outputText value="Email: *" />
+                            <p:inputText value="#{professorBean.entidade.email}" required="true" label="Email"/>
+
+                            <h:outputText value="CPF: *" />
+                            <p:inputMask id="cpf"   
+                                         value="#{professorBean.entidade.cpf}"                                       
+                                         mask="999.999.999-99" 
+                                         label="CPF"
+                                         required="true">
+                            </p:inputMask>
+                            <h:outputText value="Senha: *" />
+                            <p:password value="#{professorBean.entidade.senha}" feedback="true" label="Senha"/>
+
+                            <h:outputText value="Logradouro: *" />
+                            <p:inputText value="#{professorBean.entidade.endereco.rua}" required="true"/>
+                            <h:outputText value="Número: *" />
+                            <p:inputText value="#{professorBean.entidade.endereco.numeroEndereco}" required="true"/>
+                            <h:outputText value="Cidade: *" />
+                            <p:inputText value="#{professorBean.entidade.endereco.cidade}" required="true"/>
+                            <h:outputText value="UF: *" />                               
+                            <p:selectOneMenu id="uf" value="#{professorBean.entidade.endereco.uf}" required="true">
+                                <f:selectItem  itemValue="AC" itemLabel="AC"/>
+                                <f:selectItem  itemValue="AL" itemLabel="AL"/>
+                                <f:selectItem  itemValue="AP" itemLabel="AP"/>
+                                <f:selectItem  itemValue="AM" itemLabel="AM"/>
+                                <f:selectItem  itemValue="BA" itemLabel="BA"/>
+                                <f:selectItem  itemValue="CE" itemLabel="CE"/>
+                                <f:selectItem  itemValue="DF" itemLabel="DF"/>
+                                <f:selectItem  itemValue="ES" itemLabel="ES"/>
+                                <f:selectItem  itemValue="GO" itemLabel="GO"/>
+                                <f:selectItem  itemValue="MA" itemLabel="MA"/>
+                                <f:selectItem  itemValue="MT" itemLabel="MT"/>
+                                <f:selectItem  itemValue="MS" itemLabel="MS"/>
+                                <f:selectItem  itemValue="MG" itemLabel="MG"/>
+                                <f:selectItem  itemValue="PA" itemLabel="PA"/>
+                                <f:selectItem  itemValue="PB" itemLabel="PB"/>
+                                <f:selectItem  itemValue="PR" itemLabel="PR"/>
+                                <f:selectItem  itemValue="PE" itemLabel="PE"/>
+                                <f:selectItem  itemValue="PI" itemLabel="PI"/>
+                                <f:selectItem  itemValue="RJ" itemLabel="RJ"/>
+                                <f:selectItem  itemValue="RN" itemLabel="RN"/>
+                                <f:selectItem  itemValue="RS" itemLabel="RS"/>
+                                <f:selectItem  itemValue="RO" itemLabel="RO"/>
+                                <f:selectItem  itemValue="RR" itemLabel="RR"/>
+                                <f:selectItem  itemValue="SC" itemLabel="SC"/>
+                                <f:selectItem  itemValue="SP" itemLabel="SP"/>
+                                <f:selectItem  itemValue="SE" itemLabel="SE"/>
+                                <f:selectItem  itemValue="TO" itemLabel="TO"/>                                 
+                            </p:selectOneMenu>
+                            <h:outputText value="Cep: *" />
+                            <p:inputMask id="CEP"   
+                                         value="#{professorBean.entidade.endereco.cep}"                                       
+                                         mask="99.999-999" 
+                                         label="CEP"
+                                         required="true">
+                            </p:inputMask>
+                        </h:panelGrid>
+                        <p:commandButton value="Cadastrar" action="#{professorBean.salvar()}" update="panel" ajax="false" validateClient="true"/>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

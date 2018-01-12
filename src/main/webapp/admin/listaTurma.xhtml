@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+             <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Turmas">
+                <h:form id="Turmas" style="font-size: 15px;">
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" style="font-size: 15px;">
+                        <p:dataTable id="tabela" var="turma"  value="#{turmaBean.turmas}" rows="10" paginator="true"  caseSensitiveSort="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15" emptyMessage="Não existem turmas cadastradas">
+                            <p:column headerText="Série" sortBy="#{turma.serie}">
+                                <h:outputText value="#{turma.serie}"/>
+                            </p:column>
+                            <p:column headerText="Turno" sortBy="#{turma.turno}">
+                                <h:outputText value="#{turma.turno}"/>
+                            </p:column>
+                            <p:column headerText="Número da sala" sortBy="#{turma.numeroSala}">
+                                <h:outputText value="#{turma.numeroSala}"/>                       
+                            </p:column>                
+                            <p:column headerText="Quantidade Máxima de alunos" sortBy="#{turma.qtdAluno}">
+                                <h:outputText value="#{turma.qtdAluno}"/>
+                            </p:column>                
+                            <p:column headerText="Professor" sortBy="#{turma.professor.nome}">
+                                <h:outputText value="#{turma.professor.nome}"/>
+                            </p:column>
+                            <p:column headerText="Opções">
+                                <p:commandButton action="#{turmaBean.setTurmaEditar(turma)}" immediate="true" icon="ui-icon-pencil" value="Editar"/>
+                                <p:commandButton action="#{turmaBean.setTurmaExcluir(turma)}" update="tabela" icon="ui-icon-trash" value="Remover"/>
+                            </p:column> 
+                        </p:dataTable>
+                    </p:panel>
+                    <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+                        <h:outputText value="#{turmaBean.turmaSelecionada.serie}" />
+                    </p:dialog> 
+                </h:form>
+
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+
+
+

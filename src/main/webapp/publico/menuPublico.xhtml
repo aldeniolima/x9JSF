@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <p:layoutUnit position="west" style="width: 300px; font-size: 12px;" size="200" header="Menu" resizable="false" closable="false" collapsible="true" effect="drop">
+        <h:form>
+            <p:growl autoUpdate="true"/>
+
+            <p:panelMenu style="width:194px">
+                <p:submenu label="Turmas" rendered="#{facesContext.externalContext.isUserInRole('administrador')}">
+                    <p:menuitem value="Cadastrar" outcome="cadastrarTurma" icon="ui-icon-disk" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                    <p:menuitem value="Listar" outcome="listarTurma" icon="ui-icon-document" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                </p:submenu>
+                <p:submenu label="Alunos" rendered="#{facesContext.externalContext.isUserInRole('administrador')}">
+                    <p:menuitem value="Cadastrar" outcome="cadastrarAluno" icon="ui-icon-disk" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                    <p:menuitem value="Listar" outcome="listarAluno" icon="ui-icon-document" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                </p:submenu>
+                <p:submenu label="Professores" rendered="#{facesContext.externalContext.isUserInRole('administrador')}">
+                    <p:menuitem value="Cadastrar" outcome="cadastrarProf" icon="ui-icon-disk" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                    <p:menuitem value="Listar" outcome="listarProf" icon="ui-icon-document" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                </p:submenu>
+                <p:submenu label="Responsáveis" rendered="#{facesContext.externalContext.isUserInRole('administrador')}">
+                    <p:menuitem value="Listar" outcome="listarResp" icon="ui-icon-document" 
+                                rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                </p:submenu>
+                <p:submenu label="Turmas" rendered="#{facesContext.externalContext.isUserInRole('professor')}">
+                    <p:menuitem value="Listar Turmas" outcome="listarTurmasProf" icon="ui-icon-disk" 
+                                rendered="#{facesContext.externalContext.isUserInRole('professor')}"/>
+                </p:submenu>
+                <p:submenu label="Alunos" rendered="#{facesContext.externalContext.isUserInRole('responsavel')}">
+                    <p:menuitem value="Listar" outcome="listarAlunosResp" icon="ui-icon-document" 
+                                rendered="#{facesContext.externalContext.isUserInRole('responsavel')}"/>
+                </p:submenu>
+                <p:submenu label="Dados pessoais">
+                    <p:menuitem value="Editar" outcome="dadosPessoaisAdmin" icon="ui-icon-document" rendered="#{facesContext.externalContext.isUserInRole('administrador')}"/>
+                    <p:menuitem value="Editar" outcome="dadosPessoaisProf" icon="ui-icon-document" rendered="#{facesContext.externalContext.isUserInRole('professor')}"/>
+                    <p:menuitem value="Editar" outcome="dadosPessoaisResp" icon="ui-icon-document" rendered="#{facesContext.externalContext.isUserInRole('responsavel')}"/>
+                </p:submenu>
+                <p:submenu label="#{facesContext.externalContext.userPrincipal.name}">
+                    <p:menuitem value="Sair" action="#{logoutBean.logout()}" immediate="true" icon="ui-icon-home"/>
+                </p:submenu>
+                <p:separator />
+            </p:panelMenu>
+        </h:form>
+    </p:layoutUnit>
+</html>
+

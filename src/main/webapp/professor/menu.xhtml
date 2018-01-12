@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+             <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Menu">
+                <h:form id="Menu"> 
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel">
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

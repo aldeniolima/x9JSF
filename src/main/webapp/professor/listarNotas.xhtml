@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+             <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Relatório Parental">
+                <h:form id="Relatorio" style="font-size: 15px;"> 
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" style="font-size: 15px;">
+                        <h:panelGrid columns="2"  style="margin: auto;">
+                            <h:outputLabel value="Liderança:" />
+                            <p:inputText value="#{alunoBean.alunoSelecionado.relatorioParental.lideranca}" required="true" label="Liderança"/>
+                            <h:outputLabel value="Motivação:" />
+                            <p:inputText value="#{alunoBean.alunoSelecionado.relatorioParental.motivacao}" required="true" label="Motivação"/>
+                            <h:outputLabel value="Participação em Sala:" />
+                            <p:inputText value="#{alunoBean.alunoSelecionado.relatorioParental.participacaoEmSala}" required="true" label="Participação"/>
+                            <h:outputLabel value="Trabalho em Equipe:" />
+                            <p:inputText value="#{alunoBean.alunoSelecionado.relatorioParental.trabalhoEmEquipe}" required="true" label="Equipe"/>
+                            <h:outputLabel value="Criatividade:" />
+                            <p:inputText value="#{alunoBean.alunoSelecionado.relatorioParental.criatividade}" required="true" label="Criatividade"/>
+                            <h:outputLabel value="Observações:" />
+                            <p:inputText value="#{alunoBean.alunoSelecionado.relatorioParental.observacoes}" label="Observações"/>
+
+                            <p:commandButton action="#{alunoBean.setRelatorioEditado(alunoBean.alunoSelecionado.relatorioParental)}" ajax="false" update="panel" icon="ui-icon-disk" value="Salvar"/>
+                            <p:commandButton value="Cancelar" action="listarAlunosProf" update="panel" ajax="false" style="width: 100px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

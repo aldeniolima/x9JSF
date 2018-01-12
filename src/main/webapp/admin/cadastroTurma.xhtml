@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+            <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Cadastrar Turma">
+                <h:form id="Usuario"> 
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" style="font-size: 15px;">
+                        <h:panelGrid columns="2" style="margin: auto;">
+                            <h:outputLabel value="Número Sala: *" />
+                            <p:inputText value="#{turmaBean.entidade.numeroSala}" required="true" label="Sala"/>
+                            <h:outputLabel value="Quantidade máxima de alunos: *" />
+                            <p:inputText value="#{turmaBean.entidade.qtdAluno}" required="true" label="Quantidade de alunos"/>
+                            <h:outputLabel value="Serie: *" />
+                            <p:selectOneMenu id="serie" value="#{turmaBean.entidade.serie}" required="true">
+                                <f:selectItem  itemValue="Primeira" itemLabel="Primeira"/>
+                                <f:selectItem  itemValue="Segunda" itemLabel="Segunda"/>
+                                <f:selectItem  itemValue="Terceira" itemLabel="Terceira"/>
+                                <f:selectItem  itemValue="Quarta" itemLabel="Quarta"/>
+                                <f:selectItem  itemValue="Quinta" itemLabel="Quinta"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="turno" value="Turno: *" />
+                            <p:selectOneMenu id="turno" value="#{turmaBean.entidade.turno}" required="true">
+                                <f:selectItem  itemValue="Manhã" itemLabel="Manhã"/>
+                                <f:selectItem  itemValue="Tarde" itemLabel="Tarde"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="professor" value="Professor: *" />
+                            <p:selectOneMenu id="professor" value="#{turmaBean.entidade.professor}" required="true" filter="true" filterMatchMode="startsWith" converter="professorConverter">
+                                <f:selectItems value="#{turmaBean.professores}" var="professor" itemLabel="#{professor.nome}" itemValue="#{professor}" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton value="Cadastrar" action="#{turmaBean.salvar()}" update="panel" ajax="false" validateClient="true"/>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+
+
+

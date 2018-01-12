@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+             <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Alunos">
+                <h:form id="Alunos" style="font-size: 15px;">            
+                    <p:dataTable var="aluno"  value="#{turmaBean.alunosPorTurma}" rows="10" paginator="true"  caseSensitiveSort="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" emptyMessage="Não existem alunos cadastrados">
+                        <p:column headerText="Matrícula" sortBy="#{aluno.matricula}">
+                            <h:outputText value="#{aluno.matricula}"/>
+                        </p:column>
+                        <p:column headerText="Nome" sortBy="#{aluno.nome}">
+                            <h:outputText value="#{aluno.nome}"/>
+                        </p:column>
+                        <p:column headerText="Data de Nascimento" sortBy="#{aluno.dataNascimento}">
+                            <h:outputText value="#{aluno.dataNascimento}">
+                                <f:convertDateTime type="date" dateStyle="medium" />
+                            </h:outputText> 
+                        </p:column>
+                        <p:column headerText="Necessidade especial" sortBy="#{aluno.deficiencia}">
+                            <h:outputText value="#{aluno.deficiencia}"/>                       
+                        </p:column>
+                        <p:column headerText="Responsável" sortBy="#{aluno.responsavel.nome}">
+                            <h:outputText value="#{aluno.responsavel.nome}"/>                       
+                        </p:column>
+                        <p:column headerText="Contato Responsável" sortBy="#{aluno.responsavel.email}">
+                            <h:outputText value="#{aluno.responsavel.email}"/>
+                        </p:column>                
+                        <p:column headerText="Turma" sortBy="#{aluno.turma.serie}">
+                            <h:outputText value="#{aluno.turma.serie} / #{aluno.turma.turno}"/>
+                        </p:column>
+                        <p:column headerText="Opções">
+                            <p:commandButton action="#{alunoBean.setAlunoSelecionado(aluno)}" immediate="true" icon="ui-icon-disk" value="Notas"/>
+                                    
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

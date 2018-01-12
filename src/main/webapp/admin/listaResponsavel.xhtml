@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+             <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Responsáveis">
+                <h:form id="Responsaveis" style="font-size: 15px;">   
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" style="font-size: 15px;">
+                        <p:dataTable id="tabela" var="responsavel"  value="#{responsavelBean.responsaveis}" rows="10" paginator="true"  caseSensitiveSort="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15" emptyMessage="Não existem responsáveis cadastrados">
+                            <p:column headerText="Nome" sortBy="#{responsavel.nome}">
+                                <h:outputText value="#{responsavel.nome}"/>
+                            </p:column>
+                            <p:column headerText="Data de Nascimento" sortBy="#{responsavel.dataNascimento}">
+                                <h:outputText value="#{responsavel.dataNascimento}">
+                                    <f:convertDateTime type="date" dateStyle="medium" />
+                                </h:outputText> 
+                            </p:column>
+                            <p:column headerText="Email" sortBy="#{responsavel.email}">
+                                <h:outputText value="#{responsavel.email}"/>                       
+                            </p:column>
+                            <p:column headerText="Telefone" sortBy="#{responsavel.telefone}">
+                                <h:outputText value="#{responsavel.telefone}"/>                       
+                            </p:column>
+                            <p:column headerText="CPF" sortBy="#{responsavel.cpf}">
+                                <h:outputText value="#{responsavel.cpf}"/>
+                            </p:column>                
+                            <p:column headerText="Login" sortBy="#{responsavel.login}">
+                                <h:outputText value="#{responsavel.login}"/>
+                            </p:column>
+                            <p:column headerText="Alunos">
+                                <ui:repeat value="#{responsavel.alunos}" var="aluno" varStatus="status">
+                                    <ui:fragment rendered="#{status.index != 0}">
+                                        <h:outputText value=", " />
+                                    </ui:fragment>
+                                    <h:outputText value="#{aluno.nome}" />
+                                </ui:repeat>
+                            </p:column> 
+                            <p:column headerText="Opções">
+                                <p:commandButton action="#{responsavelBean.setResponsavelEditar(responsavel)}" immediate="true" icon="ui-icon-pencil" value="Editar"/>
+                                <p:commandButton action="#{responsavelBean.setResponsavelExcluir(responsavel)}" update="tabela" icon="ui-icon-trash" value="Remover"/>
+                            </p:column> 
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>

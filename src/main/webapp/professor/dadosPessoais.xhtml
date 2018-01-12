@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>X9Acadêmico</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background: #111111;">
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="60" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="X9 Acadêmico" />
+            </p:layoutUnit>
+
+            <!--  <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">
+                  <h:outputText value="South unit content." />
+              </p:layoutUnit> -->
+
+             <ui:include src="../publico/menuPublico.xhtml" />
+
+            <!-- <p:layoutUnit position="east" size="200" header="Right" resizable="false" closable="false" collapsible="false">
+                 <h:outputText value="Right unit content." />
+             </p:layoutUnit> -->
+
+            <p:layoutUnit position="center" header="Dados Pessoais">
+                <h:form id="Usuario"> 
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" style="font-size: 15px;">
+                        <h:panelGrid columns="2"  style="margin: auto;">
+                            <h:outputText value="Nome: #{usuarioLogado.nome}" />
+                            <h:outputText value="Telefone: #{usuarioLogado.telefone}" />
+                            <h:outputText value="Login: #{usuarioLogado.login}"/>
+                            <h:outputText value="Data de Nascimento: #{usuarioLogado.dataNascimento}">
+                                <f:convertDateTime type="date" dateStyle="medium" />
+                            </h:outputText>
+                            <h:outputText value="Email: #{usuarioLogado.email}" />
+
+                            <h:outputText value="CPF: #{usuarioLogado.cpf}" />
+
+                            <h:outputText value="Endereço" />
+                            <h:outputText value="Logradouro: #{usuarioLogado.endereco.rua}" />
+
+                            <h:outputText value="Número: #{usuarioLogado.endereco.numeroEndereco}" />
+
+                            <h:outputText value="Cidade: #{usuarioLogado.endereco.cidade}" />
+
+                            <h:outputText value="UF: #{usuarioLogado.endereco.uf}" />
+
+                            <h:outputText value="Cep: #{usuarioLogado.endereco.cep}" />
+
+
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+
